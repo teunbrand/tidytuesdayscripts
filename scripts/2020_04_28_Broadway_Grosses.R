@@ -18,7 +18,7 @@ grosses <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/ti
 ## Layer function ---------------------------------------------------------
 
 # Function for making a rolling gaussian filter to get decent trendlines without
-# modelling to many bells and whistles
+# modelling too many bells and whistles
 
 stat_rollgaus <- function(
   mapping = NULL, data = NULL, geom = "line", position = "identity", ...,
@@ -37,7 +37,7 @@ stat_rollgaus <- function(
 # ggproto -----------------------------------------------------------------
 
 StatRollgaus<- ggproto(
-  "StatRungaus", Stat,
+  "StatRollgaus", Stat,
   compute_group = function(data, scales, n = 256, rel_width = 0.02,
                            na.rm = FALSE, flipped_aes = FALSE) {
     # Throw away unusable values
@@ -105,7 +105,7 @@ highlight_shows <- c(decreasing_shows, stable_shows, increasing_shows)
 
 startend_data <- shows_filt %>%
   group_by(show, theatre) %>%
-  # Dont know if the ordering is need but you new know
+  # Dont know if the ordering is need but you never know
   mutate(ord = order(week_ending)) %>%
   summarise(
     start_price = mean(head(avg_ticket_price[ord], 20)),
@@ -159,11 +159,6 @@ my_note <- paste(
   "while increasing the price</span>",
   sep = "<br>"
   )
-
-# I want the legend text to be the colour guide itself
-legendtext <- paste0(
-  "<span style='color:", rev(colours),";'>", highlight_shows, "</span>"
-)
 
 # Manually make a legend for in the plot itself
 legend_anno <- data.frame(
@@ -291,4 +286,4 @@ pw <- (timeplot | startend) +
 
 # Saving ------------------------------------------------------------------
 
-ggsave("figures/2020_04_28_Broadway_Grosses.png", bg = "grey20")
+ggsave("figures/2020_04_28_Broadway_Grosses.png", bg = "grey20", width = 8, height = 6)
