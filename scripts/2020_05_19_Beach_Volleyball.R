@@ -121,6 +121,10 @@ communities <- clusters %>%
 
 # Plot builder ------------------------------------------------------------
 
+# Colours by the esteemed @RobinWeide
+colours <- rev(c("#009BEF", "#38B1F2", "#71C7F6", "#AADDF9", "#E2F3FD", 
+                 "#FFECEA", "#FFC8C2", "#FFA499", "#FF8071", "#FF5C49"))
+
 build_graph <- function(graph, top) {
   
   ggraph(graph, layout = "stress") +
@@ -146,7 +150,7 @@ build_graph <- function(graph, top) {
     ) +
     scale_edge_colour_gradientn(
       name = "Matches\nWon",
-      colours = rev(c("#009BEF", "#7FCDF7", "#FFFFFF", "#FFADA3", "#FF5C49")),
+      colours = colours,
       limits = c(0.3, 0.7),
       oob = scales::squish,
       breaks = c(0.3, 0.5, 0.7),
