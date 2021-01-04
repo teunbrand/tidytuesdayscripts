@@ -84,7 +84,7 @@ g <- ggplot(df, aes(start_year, ID)) +
              scales = "free_y", space = "free_y", switch = "y") +
   labs(
     title = "Urban Transport Projects",
-    subtitle = "Between 2000-2020",
+    subtitle = "Their lifespans and costs",
     caption = 'Data | *Transit Costs Project*'
   ) +
   theme_classic() +
@@ -96,10 +96,11 @@ g <- ggplot(df, aes(start_year, ID)) +
     strip.placement = "outside",
     strip.text.y.left = element_text(angle = 0, hjust = 1),
     strip.background = element_blank(),
-    legend.justification = "bottom",
+    legend.justification = "top",
     legend.title = element_markdown(lineheight = unit(1.2, "pt")),
     text = element_text(family = "Noto Sans"),
     plot.title = element_text(family = "Roboto", face = "bold"),
+    plot.title.position = "plot",
     plot.subtitle = element_text(face = "italic"),
     plot.caption.position = "plot",
     plot.caption = element_markdown()
